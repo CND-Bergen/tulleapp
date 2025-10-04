@@ -1,0 +1,21 @@
+name: Deploy Pull Requests to separate environment
+
+on:
+  pull_request_target:
+
+jobs:
+  handle-pr:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # ratchet:actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: deploy to test
+        id: deploy-test
+        run: |
+          echo "Deploying ${{ github.event.pull_request.title }} to test environment"
+          env:
+            DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+
