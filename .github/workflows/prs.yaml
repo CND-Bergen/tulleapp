@@ -17,6 +17,6 @@ jobs:
         id: deploy-test
         run: |
           echo "Deploying ${{ github.event.pull_request.title }} to test environment"
-          env:
-            DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+        env:
+          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
 
